@@ -20,7 +20,7 @@ public class Board {
 	private Long bno;
 	private String title;
 	private String writer;
-	private String content;
+	private String contents;
 	
 	@CreationTimestamp
 	private Timestamp regdate;
@@ -46,10 +46,10 @@ public class Board {
 		this.writer = writer;
 	}
 	public String getContent() {
-		return content;
+		return contents;
 	}
 	public void setContent(String content) {
-		this.content = content;
+		this.contents = content;
 	}
 	public Timestamp getRegdate() {
 		return regdate;
@@ -62,6 +62,11 @@ public class Board {
 	}
 	public void setUpdatedate(Timestamp updatedate) {
 		this.updatedate = updatedate;
+	}
+	@Override
+	public String toString() {
+		return "Board [bno=" + bno + ", title=" + title + ", writer=" + writer + ", contents=" + contents + ", regdate="
+				+ regdate + ", updatedate=" + updatedate + "]";
 	}
 	
 }
