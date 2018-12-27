@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,7 @@ public class ManyToOneTest {
 	
 	@Autowired
 	ProfileRepository profileRepo;
+	
 	
 	@Test
 	public void testInsertMembers() {
@@ -56,41 +56,27 @@ public class ManyToOneTest {
 	}
 	
 	@Test
-	@Ignore
-	@Description("김현정 작성. println 잘 안나옴")
-	public void testGetMemberWithProfileCount() {
-		List<Object[]> results = memberRepo.getMemberWithProfileCount("user1");
-		results.forEach(member -> System.out.println(member));
-	}
-	
-	@Test
-	@Ignore
-	@Description("김현정 작성. println 잘 안나옴")
-	public void testGetMemberWithProfile() {
-		List<Object[]> results = memberRepo.getMemberWithProfile("user1");
-		results.forEach(member -> System.out.println(member));
-	}
-	
-	@Test
-	@Description("예제. println 잘 나옴")
-	public void testFetchJoin1() {
-		List<Object[]> result = memberRepo.getMemberWithProfileCount("user1");
-		result.forEach(arr -> System.out.println(Arrays.toString(arr)));
-	}
-
-	@Test
-	@Description("예제. println 잘 나옴")
-	public void testFetchJoin2() {
-		List<Object[]> result = memberRepo.getMemberWithProfile("user1");
-		result.forEach(arr -> System.out.println(Arrays.toString(arr)));
-	}
-
-	@Test
 	public void testFindProfile() { 
 	    Optional<Profile> profile = profileRepo.findById(1L);
 	    if (profile != null) {
 	    	System.out.println(profile);     	 
     	}
+	}
+	
+	@Test
+	@Description("Fetch. Select Join Count")
+	public void testFetchJoin1() {
+		List<Object[]> result = memberRepo.getMemberWithProfileCount("user1");
+		// results.forEach(member -> System.out.println(member));
+		result.forEach(arr -> System.out.println(Arrays.toString(arr)));
+	}
+
+	@Test
+	@Description("Fetch. Select Join Data")
+	public void testFetchJoin2() {
+		List<Object[]> result = memberRepo.getMemberWithProfile("user1");
+		// results.forEach(member -> System.out.println(member));
+		result.forEach(arr -> System.out.println(Arrays.toString(arr)));
 	}
 }
 
