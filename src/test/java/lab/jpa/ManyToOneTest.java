@@ -24,8 +24,7 @@ public class ManyToOneTest {
 	MemberRepository memberRepo;
 	
 	@Autowired
-	ProfileRepository profileRepo;
-	
+	ProfileRepository profileRepo;	// optional (0 또는 1)
 	
 	@Test
 	public void testInsertMembers() {
