@@ -7,8 +7,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import lab.jpa.domain.Board;
@@ -59,6 +61,20 @@ public class DataJpaQueryTest {
 		Pageable pageable = PageRequest.of(0, 10);	// start, view
 		Collection<Board> results = repo.findByBnoGreaterThanOrderByBnoDesc(0L, pageable);
 		results.forEach(board -> System.out.println(board));
+	}
+	
+	@Test
+	public void testBnoPagingSort() {
+		Pageable pageable = PageRequest.of(0, 10, Sort.Direction.ASC, "bno");	// start, view, sort, column
+		Page<Board> results = repo.findByBnoGreaterThan(0L, pageable);
+		results.forEach(board -> System.out.println(board));
+		
+		System.out.println(results.hasNext());
+		if (results.hasNext()) {
+			pageable = results.nextPageable();
+			Page<Board> results2 = repo.findByBnoGreaterThan(0L, pageable);
+			results2.forEach(board -> System.out.println(board));
+		}
 	}
 }
 
