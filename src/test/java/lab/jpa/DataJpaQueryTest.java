@@ -2,10 +2,13 @@ package lab.jpa;
 
 import java.util.Collection;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import lab.jpa.domain.Board;
@@ -29,6 +32,7 @@ public class DataJpaQueryTest {
 	}
 	
 	@Test
+	@Ignore
 	public void deleteAllBoard() {
 		repo.deleteAll();
 	}
@@ -41,6 +45,19 @@ public class DataJpaQueryTest {
 	@Test
 	public void findByWriterTest() {
 		Collection<Board> results = repo.findByWriterContaining("07");
+		results.forEach(board -> System.out.println(board));
+	}
+	
+	@Test
+	public void testBnoOrderBy() {
+		Collection<Board> results = repo.findByBnoGreaterThanOrderByBnoDesc(2900L);
+		results.forEach(board -> System.out.println(board));
+	}
+	
+	@Test
+	public void testBnoOrderByPaging() {
+		Pageable pageable = PageRequest.of(0, 10);	// start, view
+		Collection<Board> results = repo.findByBnoGreaterThanOrderByBnoDesc(0L, pageable);
 		results.forEach(board -> System.out.println(board));
 	}
 }
