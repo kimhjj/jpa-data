@@ -26,4 +26,9 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	// bno > ? ORDER BY bno DESC limit ?, ?
 	public List<Board> findByBnoGreaterThanOrderByBnoDesc(Long bno, Pageable paging);
 	
+	@Query("SELECT board FROM Board board WHERE board.bno > 0 ORDER BY board.bno desc")
+	public List<Board> findByPage(Pageable pageable);
+
+	@Query("SELECT b FROM Board b WHERE b.contents LIKE %:contents% AND b.bno > 0 ORDER BY b.bno desc")
+	public List<Board> findByContents(@Param("contents") String contents);
 }
