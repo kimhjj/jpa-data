@@ -12,7 +12,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(of="uid")
+@EqualsAndHashCode(of="userid")
 @Entity
 @Table(name="tbl_members")
 public class Member {

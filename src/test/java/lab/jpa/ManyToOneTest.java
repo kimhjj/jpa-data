@@ -1,12 +1,16 @@
 package lab.jpa;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
-import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Description;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import lab.jpa.domain.Member;
@@ -49,6 +53,44 @@ public class ManyToOneTest {
 			profile1.setMember(member);
 			profileRepo.save(profile1);
 		}
+	}
+	
+	@Test
+	@Ignore
+	@Description("김현정 작성. println 잘 안나옴")
+	public void testGetMemberWithProfileCount() {
+		List<Object[]> results = memberRepo.getMemberWithProfileCount("user1");
+		results.forEach(member -> System.out.println(member));
+	}
+	
+	@Test
+	@Ignore
+	@Description("김현정 작성. println 잘 안나옴")
+	public void testGetMemberWithProfile() {
+		List<Object[]> results = memberRepo.getMemberWithProfile("user1");
+		results.forEach(member -> System.out.println(member));
+	}
+	
+	@Test
+	@Description("예제. println 잘 나옴")
+	public void testFetchJoin1() {
+		List<Object[]> result = memberRepo.getMemberWithProfileCount("user1");
+		result.forEach(arr -> System.out.println(Arrays.toString(arr)));
+	}
+
+	@Test
+	@Description("예제. println 잘 나옴")
+	public void testFetchJoin2() {
+		List<Object[]> result = memberRepo.getMemberWithProfile("user1");
+		result.forEach(arr -> System.out.println(Arrays.toString(arr)));
+	}
+
+	@Test
+	public void testFindProfile() { 
+	    Optional<Profile> profile = profileRepo.findById(1L);
+	    if (profile != null) {
+	    	System.out.println(profile);     	 
+    	}
 	}
 }
 
