@@ -11,13 +11,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Getter
-@Setter
-@ToString
 @Entity
 @Table(name="tbl_boards")
 public class Board {
@@ -33,4 +26,41 @@ public class Board {
 	private Timestamp regdate;
 	@UpdateTimestamp
 	private Timestamp updatedate;
+	public Long getBno() {
+		return bno;
+	}
+	public void setBno(Long bno) {
+		this.bno = bno;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public Timestamp getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(Timestamp regdate) {
+		this.regdate = regdate;
+	}
+	public Timestamp getUpdatedate() {
+		return updatedate;
+	}
+	public void setUpdatedate(Timestamp updatedate) {
+		this.updatedate = updatedate;
+	}
+	
 }
