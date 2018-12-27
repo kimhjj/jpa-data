@@ -26,6 +26,7 @@ public class Board {
 	private Timestamp regdate;
 	@UpdateTimestamp
 	private Timestamp updatedate;
+	
 	public Long getBno() {
 		return bno;
 	}
