@@ -85,8 +85,14 @@ public class DataJpaQueryTest {
 	}
 	
 	@Test
-	public void testByContent() {
-		
+	public void testByPaging() {
+		Pageable pageable = PageRequest.of(0, 10);
+		repo.findByPage(pageable).forEach(board -> System.out.println(board));
+	}
+	
+	@Test
+	public void testByContentsByLike() {
+		repo.findByContents("07").forEach(board -> System.out.println(board));
 	}
 }
 
