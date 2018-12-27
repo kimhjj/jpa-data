@@ -72,9 +72,21 @@ public class DataJpaQueryTest {
 		System.out.println(results.hasNext());
 		if (results.hasNext()) {
 			pageable = results.nextPageable();
-			Page<Board> results2 = repo.findByBnoGreaterThan(0L, pageable);
-			results2.forEach(board -> System.out.println(board));
+			Page<Board> next_results = repo.findByBnoGreaterThan(0L, pageable);
+			next_results.forEach(board -> System.out.println(board));
 		}
+		
+		System.out.println(results.hasPrevious());
+		if (results.hasPrevious()) {
+			pageable = results.previousPageable();
+			Page<Board> previous_results = repo.findByBnoGreaterThan(0L, pageable);
+			previous_results.forEach(board -> System.out.println(board));
+		}
+	}
+	
+	@Test
+	public void testByContent() {
+		
 	}
 }
 
